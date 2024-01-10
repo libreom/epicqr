@@ -100,6 +100,7 @@
       type="text/javascript"
       src="https://unpkg.com/@zxing/library@latest"
     ></script>
+    <script src="https://raw.githack.com/captn3m0/epicqr/main/src/lib.js"></script>
     <script type="text/javascript">
       function decodeEpicQR(base64String) {
         return eci.EpicQR.decode(base64String);
@@ -109,7 +110,7 @@
           .decodeFromInputVideoDevice(selectedDeviceId, "video")
           .then((result) => {
             console.log(result);
-            document.getElementById("result").textContent = result.text;
+            document.getElementById("result").textContent = JSON.stringify(decodeEpicQR(result.text), null, 2);
           })
           .catch((err) => {
             console.error(err);
@@ -125,7 +126,7 @@
             if (result) {
               // properly decoded qr code
               console.log("Found QR code!", result);
-              document.getElementById("result").textContent = result.text;
+              document.getElementById("result").textContent = JSON.stringify(decodeEpicQR(result.text), null, 2);
             }
 
             if (err) {
