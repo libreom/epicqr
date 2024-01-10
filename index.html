@@ -86,7 +86,11 @@
           .decodeFromInputVideoDevice(selectedDeviceId, "video")
           .then((result) => {
             console.log(result);
-            document.getElementById("result").textContent = `EPIC No.: ${result["epic"]}\n ID: ${result["id"]}`;
+            document.getElementById("result").textContent = JSON.stringify(
+              decodeEpicQR(result.text),
+              null,
+              2
+            );
           })
           .catch((err) => {
             console.error(err);
@@ -102,7 +106,11 @@
             if (result) {
               // properly decoded qr code
               console.log("Found QR code!", result);
-              document.getElementById("result").textContent = `EPIC No.: ${result["epic"]}\n ID: ${result["id"]}`;
+              document.getElementById("result").textContent = JSON.stringify(
+                decodeEpicQR(result.text),
+                null,
+                2
+              );
             }
 
             if (err) {
